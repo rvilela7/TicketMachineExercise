@@ -20,11 +20,6 @@ namespace TicketSearch
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             tb1.Enabled = false;
@@ -54,7 +49,7 @@ namespace TicketSearch
 
             if (node.Depth == prefix.Length)
             {
-                foreach (var suffix in suffixes(node))
+                foreach (var suffix in Trie.suffixes(node))
                     cities.Add(prefix + suffix);
 
                 foreach (string local in cities)
@@ -64,30 +59,6 @@ namespace TicketSearch
                 listView1.Items.Add("No results");
         }
 
-        static IEnumerable<string> suffixes(TreeNode parent)
-        {
-            var sb = new StringBuilder();
-            return suffixes(parent, sb).Select(suffix => suffix.TrimEnd('$'));
-        }
-
-        static IEnumerable<string> suffixes(TreeNode parent, StringBuilder current)
-        {
-            if (parent.IsLeaf())
-            {
-                yield return current.ToString();
-            }
-            else
-            {
-                foreach (var child in parent.Children)
-                {
-                    current.Append(child.Value);
-
-                    foreach (var value in suffixes(child, current))
-                        yield return value;
-
-                    --current.Length;
-                }
-            }
-        }
+        
     }
 }
