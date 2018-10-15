@@ -31,6 +31,7 @@
             this.tb1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.TimeElapseLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tb1
@@ -59,11 +60,20 @@
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
+            // TimeElapseLabel
+            // 
+            this.TimeElapseLabel.AutoSize = true;
+            this.TimeElapseLabel.Location = new System.Drawing.Point(12, 174);
+            this.TimeElapseLabel.Name = "TimeElapseLabel";
+            this.TimeElapseLabel.Size = new System.Drawing.Size(0, 13);
+            this.TimeElapseLabel.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(559, 199);
+            this.Controls.Add(this.TimeElapseLabel);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb1);
@@ -82,6 +92,7 @@
         private System.Windows.Forms.TextBox tb1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label TimeElapseLabel;
     }
 }
 

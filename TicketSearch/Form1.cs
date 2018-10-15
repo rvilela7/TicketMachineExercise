@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -49,9 +50,12 @@ namespace TicketSearch
 
             if (node.Depth == prefix.Length)
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 foreach (var suffix in Trie.suffixes(node))
                     cities.Add(prefix + suffix);
-
+                sw.Stop();
+                TimeElapseLabel.Text = sw.Elapsed.TotalMilliseconds.ToString() + " ms";
                 foreach (string local in cities)
                     listView1.Items.Add(local);
             }
