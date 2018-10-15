@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,11 +19,6 @@ namespace TicketSearch
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,9 +50,12 @@ namespace TicketSearch
 
             if (node.Depth == prefix.Length)
             {
-                foreach (var suffix in suffixes(node))
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                foreach (var suffix in Trie.suffixes(node))
                     cities.Add(prefix + suffix);
-
+                sw.Stop();
+                TimeElapseLabel.Text = sw.Elapsed.TotalMilliseconds.ToString() + " ms";
                 foreach (string local in cities)
                     listView1.Items.Add(local);
             }
@@ -64,30 +63,6 @@ namespace TicketSearch
                 listView1.Items.Add("No results");
         }
 
-        static IEnumerable<string> suffixes(TreeNode parent)
-        {
-            var sb = new StringBuilder();
-            return suffixes(parent, sb).Select(suffix => suffix.TrimEnd('$'));
-        }
-
-        static IEnumerable<string> suffixes(TreeNode parent, StringBuilder current)
-        {
-            if (parent.IsLeaf())
-            {
-                yield return current.ToString();
-            }
-            else
-            {
-                foreach (var child in parent.Children)
-                {
-                    current.Append(child.Value);
-
-                    foreach (var value in suffixes(child, current))
-                        yield return value;
-
-                    --current.Length;
-                }
-            }
-        }
+        
     }
 }
