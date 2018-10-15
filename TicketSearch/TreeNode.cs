@@ -5,11 +5,6 @@ using System.Text;
 
 namespace TicketSearch
 {
-    public class Tree
-    {
-        
-    }
-
     public class TreeNode
     {
         public char Value { get; set; }
@@ -41,34 +36,6 @@ namespace TicketSearch
                 if (Children[i].Value == c)
                     Children.RemoveAt(i);
         }
-
-        protected static IEnumerable<string> suffixes(TreeNode parent)
-        {
-            var sb = new StringBuilder();
-            return suffixes(parent, sb).Select(suffix => suffix.TrimEnd('$'));
-        }
-
-        protected static IEnumerable<string> suffixes(TreeNode parent, StringBuilder current)
-        {
-            if (parent.IsLeaf())
-            {
-                yield return current.ToString();
-            }
-            else
-            {
-                foreach (var child in parent.Children)
-                {
-                    current.Append(child.Value);
-
-                    foreach (var value in suffixes(child, current))
-                        yield return value;
-
-                    --current.Length;
-                }
-            }
-        }
-
-
     }
 
     public class Trie
