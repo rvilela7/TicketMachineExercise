@@ -9,7 +9,14 @@ namespace TicketSearch.UnitTest
         public void DoHello()
         {
             Assert.AreEqual(true, true);
-            Assert.That(1==2);
-        } 
+        }
+
+        [TestCase('A', true)]
+        [TestCase(1, false)]
+        public void IsCharValid(char a, bool expected)
+        {
+            bool v = (a == 'A' ? true : false);
+            Assert.AreEqual(expected, v);
+        }
     }
 }
