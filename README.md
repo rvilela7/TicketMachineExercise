@@ -1,3 +1,4 @@
 # TicketMachineExercise
 
-Just a small code exercise
+Just a small code exercise. Obsoleted
+
